@@ -2,7 +2,7 @@ import random
 from django.core.management.base import BaseCommand
 from faker import Faker
 
-from company_tree.employees.models import Department, Employee
+from employees.models import Department, Employee
 
 
 class Command(BaseCommand):
