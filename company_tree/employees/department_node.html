@@ -1,0 +1,12 @@
+<!-- templates/employees/department_node.html -->
+<li>
+    <span class="department" onclick="toggleEmployees({{ department.id }})">{{ department.name }}</span>
+    <ul class="employees" id="employees-{{ department.id }}">
+        {% for employee in department.employees.all %}
+            <li>{{ employee.full_name }} - {{ employee.position }} - {{ employee.hire_date }} - {{ employee.salary }}</li>
+        {% endfor %}
+        {% for child in department.children.all %}
+            {% include 'employees/department_node.html' with department=child %}
+        {% endfor %}
+    </ul>
+</li>
