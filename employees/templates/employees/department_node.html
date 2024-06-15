@@ -1,0 +1,17 @@
+<!-- templates/employees/department_node.html -->
+
+<div class="list-group-item">
+    <h5 class="department" onclick="toggleEmployees({{ department.id }})">{{ department.name }}</h5>
+    <div class="employees pl-3" id="employees-{{ department.id }}">
+        <ul class="list-group">
+            {% for employee in department.employees.all %}
+                <li class="list-group-item">{{ employee.full_name }} - {{ employee.position }} - {{ employee.hire_date }} - {{ employee.salary }}</li>
+            {% endfor %}
+        </ul>
+        <div class="list-group mt-2">
+            {% for child in department.children.all %}
+                {% include 'employees/department_node.html' with department=child %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
